@@ -6,7 +6,7 @@ License         : GPLv3 (See LICENSE.txt)
 '''
 
 class Transaction:
-    def __init__(self, date, trans_type, name, amount, currency, trans_id):
+    def __init__(self, year, month, day, trans_type, name, amount, currency, trans_id):
         self.year       = year
         self.month      = month
         self.day        = day

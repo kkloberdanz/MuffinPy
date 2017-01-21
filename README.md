@@ -8,8 +8,7 @@ Work in progress
 
 TODO:
 
-    * Add XML parsing
+    * Store data in a trie instead of dict
 
     * Add GTK+ GUI
 
-    * Create database
