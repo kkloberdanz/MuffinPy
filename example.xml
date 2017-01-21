@@ -1,10 +1,15 @@
-<date>20160121</date>
-<expense>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<transaction>
+	<date>20160121</date>
+	<type>expense</type>
 	<name>groceries</name>
 	<amount>36.77USD</amount> 
-</expense>
+</transaction>
 
-<income>
+<transaction>
+	<date>20160121</date>
+	<type>income</type>
 	<name>Kyle's Paycheck</name>
 	<amount>6440.00USD</amount> 
-</income>
+</transaction>
