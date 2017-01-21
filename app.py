@@ -13,7 +13,7 @@ import datetime
 import re
 
 def is_date(date):
-    date_regex = re.compile("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,2}$")
+    date_regex = re.compile("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$")
     m = date_regex.search(date)
     if m:
         return True
