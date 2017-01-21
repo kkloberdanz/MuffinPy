@@ -4,12 +4,12 @@
 	<date>20160121</date>
 	<type>expense</type>
 	<name>groceries</name>
-	<amount>36.77USD</amount> 
+	<amount>USD36.77</amount> 
 </transaction>
 
 <transaction>
 	<date>20160121</date>
 	<type>income</type>
 	<name>Kyle's Paycheck</name>
-	<amount>6440.00USD</amount> 
+	<amount>USD6440.00</amount> 
 </transaction>
