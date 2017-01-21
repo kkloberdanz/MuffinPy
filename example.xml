@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <transactions>
+
 	<transaction>
-		<date>20160121</date>
-		<type>expense</type>
-		<name>groceries</name>
-		<amount>USD36.77</amount> 
+        <year>2016</year>
+        <month>1</month>
+        <day>13</day>
+		<type>income</type>
+		<name>Initial Balance</name>
+		<amount>11458.76</amount> 
+		<currency>USD</currency> 
+		<id>1</id> 
 	</transaction>
 
 	<transaction>
+        <year>2017</year>
+        <month>1</month>
+        <day>21</day>
+		<type>expense</type>
+		<name>groceries</name>
+		<amount>36.77</amount> 
+		<currency>USD</currency> 
+		<id>2</id> 
+	</transaction>
+
+	<transaction>
+        <year>2017</year>
+        <month>1</month>
+        <day>21</day>
 		<date>20160121</date>
 		<type>income</type>
 		<name>Kyle's Paycheck</name>
-		<amount>USD6440.00</amount> 
+		<amount>6440.00</amount> 
+		<currency>USD</currency> 
+		<id>3</id> 
+	</transaction>
+
+	<transaction>
+        <year>2017</year>
+        <month>1</month>
+        <day>22</day>
+		<type>income</type>
+		<name>Ellie's Paycheck</name>
+		<amount>4550.00</amount> 
+		<currency>USD</currency> 
+		<id>4</id> 
 	</transaction>
 </transactions>
