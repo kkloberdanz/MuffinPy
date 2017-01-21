@@ -1,3 +1,9 @@
+'''
+Programmer      : Kyle Kloberdanz
+Date Created    : 21 Jan 2017
+File            : Database.py
+License         : GPLv3 (See LICENSE.txt)
+'''
 class Database:
     ''' Reads from and stores transactions to an XML file '''
 
