@@ -6,9 +6,7 @@ License         : GPLv3 (See LICENSE.txt)
 '''
 
 from Parser import Parser
-
-def dollars_to_cents(amount):
-    return int(amount.replace('.', ''))
+import Currency
 
 class Database:
     ''' Reads from and stores transactions to an XML file '''
@@ -25,9 +23,29 @@ class Database:
         self.balance = balance
         self.p = Parser()
 
+    def __repr__(self):
+        ret_s = "\n"
+        for key, value in self.data_d.items():
+            ret_s += str(key) + ":\n"
+            for item in value:
+                ret_s += "\t" + str(item) + '\n'
+        ret_s += "Balance: " + self.get_balance_str()
+        return ret_s
+
+    def write(self, filename):
+        for key, value in self.data_d.items():
+            for i in range(len(value)):
+                if not value[i].written_to_file:
+                    self.p.write(filename, value[i])
+                    value[i].written_to_file = True
+
     def get_balance_str(self):
         b_str = str(self.balance)
         return '$' + b_str[:-2] + '.' + b_str[-2:]
+
+    def increment_and_get_num_items(self):
+        self.p.num_items += 1
+        return self.p.num_items
 
     def read(self, filename):
         # Read in XML file, and put it into datastructure
@@ -52,12 +70,12 @@ class Database:
 
     def add_expense(self, expense):
         ''' takes expense of type Transaction '''
-        self.balance -= dollars_to_cents(expense.amount)
+        self.balance -= Currency.dollars_to_cents(expense.amount)
         self.add_transaction(expense)
 
     def add_income(self, income):
         ''' takes income of type Transaction '''
-        self.balance += dollars_to_cents(income.amount)
+        self.balance += Currency.dollars_to_cents(income.amount)
         self.add_transaction(income)
 
 

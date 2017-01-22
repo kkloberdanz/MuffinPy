@@ -6,7 +6,7 @@ License         : GPLv3 (See LICENSE.txt)
 '''
 
 class Transaction:
-    def __init__(self, year, month, day, trans_type, name, amount, currency, trans_id):
+    def __init__(self, year, month, day, trans_type, name, amount, currency, trans_id, written_to_file=False):
         self.year       = year
         self.month      = month
         self.day        = day
@@ -17,6 +17,8 @@ class Transaction:
         self.currency   = currency
         self.trans_id   = trans_id
 
+        self.written_to_file = written_to_file
+
     def __repr__(self):
         return "(year: " + str(self.year) +\
                ", month: " + str(self.month) + \
@@ -26,5 +28,6 @@ class Transaction:
                ", amount: " + str(self.amount)+\
                ", currency: " + str(self.currency)+\
                ", id: " + str(self.trans_id)+\
+               ", written?: " + str(self.written_to_file)+\
                ")"
 
