@@ -28,6 +28,13 @@ class Transaction:
                ", amount: " + str(self.amount)+\
                ", currency: " + str(self.currency)+\
                ", id: " + str(self.trans_id)+\
-               ", written?: " + str(self.written_to_file)+\
                ")"
 
+    def __lt__(self, other):
+        if self.year != other.year:
+            return self.year < other.year
+
+        if self.month != other.month:
+            return self.month < other.month
+
+        return self.day < other.day

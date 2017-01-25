@@ -7,6 +7,7 @@ License         : GPLv3 (See LICENSE.txt)
 
 from xml.dom import minidom
 from Transaction import Transaction
+import os
 
 class Parser:
 
@@ -20,7 +21,7 @@ class Parser:
         output_file.write("<transactions>\n")
 
         for line in input_file:
-            output_file.write("\t" + line + "\n")
+            output_file.write("\t" + line)
 
         output_file.write("</transactions>")
         output_file.close()
@@ -61,4 +62,25 @@ class Parser:
 
         input_file.close()
         
+
+    def clear_tmp(self, tmp_filename):
+        tmp = open(tmp_filename, "w")
+        tmp.close()
+
+    def remake_file(self, filename, transactions):
+
+        # clear tmp file
+        output_file = open(filename + ".tmp", "w")
+        output_file.close()
+
+        # write each transaction to tmp file
+        for transaction in transactions:
+            self.write(filename + ".tmp", transaction)
+
+
+        # replace original file with tmp file
+        os.rename(filename + ".tmp", filename)
+
+    def rename_file(self, old_name, new_name):
+        os.rename(old_name, new_name)
 

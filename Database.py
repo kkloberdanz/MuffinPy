@@ -7,6 +7,7 @@ License         : GPLv3 (See LICENSE.txt)
 
 from Parser import Parser
 import Currency
+import operator
 
 class Database:
     ''' Reads from and stores transactions to an XML file '''
@@ -25,7 +26,8 @@ class Database:
 
     def __repr__(self):
         ret_s = "\n"
-        for key, value in self.data_d.items():
+        sorted_l = sorted(self.data_d.items(), key=operator.itemgetter(0))
+        for key, value in sorted_l:
             ret_s += str(key) + ":\n"
             for item in value:
                 ret_s += "\t" + str(item) + '\n'
@@ -38,6 +40,37 @@ class Database:
                 if not value[i].written_to_file:
                     self.p.write(filename, value[i])
                     value[i].written_to_file = True
+
+    def set_all_written(self, set_val): 
+        for key, value in self.data_d.items():
+            for i in range(len(value)):
+                value[i].written_to_file = set_val
+
+    def delete(self, filename, trans_id):
+        will_rebuild_file = False
+        keys_to_delete = []
+        self.set_all_written(False)
+        for key, value in self.data_d.items():
+            for i in range(len(value)):
+                if trans_id == value[i].trans_id:
+                    will_rebuild_file = True
+                    del value[i]
+                    if len(value) <= 0 and key in self.data_d:
+                        keys_to_delete.append(key)
+
+
+        for key in keys_to_delete:
+            self.data_d.pop(key) 
+
+        if will_rebuild_file:
+            tmp_file = filename + ".tmp"
+            self.p.clear_tmp(tmp_file)
+            #self.set_all_written(False)
+            self.write(tmp_file)
+            self.p.rename_file(tmp_file, filename)
+
+        else:
+            print("Item:", trans_id, "not found")
 
     def get_balance_str(self):
         b_str = str(self.balance)
@@ -67,6 +100,7 @@ class Database:
             self.data_d[key] = []
 
         self.data_d[key].append(transaction)
+        self.data_d[key].sort()
 
     def add_expense(self, expense):
         ''' takes expense of type Transaction '''
