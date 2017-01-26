@@ -71,14 +71,35 @@ class Interface:
 
     def delete(self):
         trans_id = input("Transaction ID to delete > ")
+
+        if trans_id == "q":
+            return
+
         self.d.delete(self.filename, trans_id)
+
+    def history(self):
+        user_input = input("history (date or all) > ")
+
+        if user_input == "q":
+            return
+
+        if user_input.lower() == "all":
+            print("Current items in DB: ", self.d)
+
+        elif user_input.lower() == "date":
+            user_input = input("Range (dd/mm/yyyy) (dd/mm/yyyy) > ")
+            start, end = user_input.split(' ')
+
+            print("Transactions from " + start + " to " + end + ":")
+            for trans in self.d.range(start, end):
+                print(trans)
+        
 
     def launch_cli(self):
 
         user_input = 'a'
         while user_input != 'q':
-            print("Current items in DB: ", self.d)
-            user_input = input("Type (expense, income, delete)? > ") 
+            user_input = input("Type (expense, income, history, delete)? > ") 
 
             if user_input == "expense":
                 self.get_transaction_from_stdin("expense")
@@ -88,6 +109,9 @@ class Interface:
 
             elif user_input == "delete":
                 self.delete()
+
+            elif user_input == "history":
+                self.history()
 
             elif user_input == "q":
                 quit()

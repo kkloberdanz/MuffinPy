@@ -6,10 +6,10 @@ License         : GPLv3 (See LICENSE.txt)
 '''
 
 class Transaction:
-    def __init__(self, year, month, day, trans_type, name, amount, currency, trans_id, written_to_file=False):
-        self.year       = year
-        self.month      = month
-        self.day        = day
+    def __init__(self, year, month, day, trans_type="expense", name="default", amount=0, currency="USD", trans_id=-1, written_to_file=False):
+        self.year       = int(year)
+        self.month      = int(month)
+        self.day        = int(day)
 
         self.trans_type = trans_type
         self.name       = name
@@ -20,21 +20,19 @@ class Transaction:
         self.written_to_file = written_to_file
 
     def __repr__(self):
-        return "(year: " + str(self.year) +\
-               ", month: " + str(self.month) + \
-               ", day: " + str(self.day) + \
-               ", type: " + str(self.trans_type) + \
-               ", name: " + str(self.name) + \
-               ", amount: " + str(self.amount)+\
-               ", currency: " + str(self.currency)+\
-               ", id: " + str(self.trans_id)+\
-               ")"
+        return "date (dd/mm/yyyy): " + str(self.day) + "/" + str(self.month) + "/" + str(self.year) +\
+               "\n\ttype: " + str(self.trans_type) + \
+               "\n\tname: " + str(self.name) + \
+               "\n\tamount: " + str(self.amount)+\
+               "\n\tcurrency: " + str(self.currency)+\
+               "\n\tid: " + str(self.trans_id)+ "\n"
 
     def __lt__(self, other):
         if self.year != other.year:
-            return self.year < other.year
+            return int(self.year) < int(other.year)
 
-        if self.month != other.month:
-            return self.month < other.month
+        elif self.month != other.month:
+            return int(self.month) < int(other.month)
 
-        return self.day < other.day
+        else:
+            return int(self.day) < int(other.day)

@@ -21,4 +21,15 @@
 	
 	<transaction>
 		<year>2017</year>	<month>1</month>	<day>25</day>	<type>income</type>	<name>Ellie's Bonus</name>	<amount>3000</amount>	<currency>USD</currency>	<id>7</id></transaction>
+	
+	<transaction>
+		<year>2017</year>
+		<month>1</month>
+		<day>25</day>
+		<type>income</type>
+		<name>kyle's paycheck</name>
+		<amount>6700</amount>
+		<currency>USD</currency>
+		<id>8</id>
+	</transaction>
 </transactions>

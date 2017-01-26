@@ -6,6 +6,7 @@ License         : GPLv3 (See LICENSE.txt)
 '''
 
 from Parser import Parser
+from Transaction import Transaction
 import Currency
 import operator
 
@@ -100,7 +101,7 @@ class Database:
             self.data_d[key] = []
 
         self.data_d[key].append(transaction)
-        self.data_d[key].sort()
+        #self.data_d[key].sort()
 
     def add_expense(self, expense):
         ''' takes expense of type Transaction '''
@@ -112,6 +113,21 @@ class Database:
         self.balance += Currency.dollars_to_cents(income.amount)
         self.add_transaction(income)
 
+    def range(self, start, end):
+        start_day, start_month, start_year = start.split('/')
+        end_day, end_month, end_year = end.split('/') 
+
+        start_trans = Transaction(start_year, start_month, start_day)
+        end_trans = Transaction(end_year, end_month, end_day)
+
+        for year in range(int(start_year), int(end_year) + 1):
+
+            if year not in self.data_d:
+                continue
+
+            for trans in self.data_d[year]:
+                if (start_trans < trans) and (trans < end_trans):
+                    yield trans
 
 if __name__ == "__main__":
 
